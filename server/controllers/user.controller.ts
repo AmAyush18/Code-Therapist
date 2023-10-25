@@ -10,6 +10,7 @@ import sendMail from '../utils/sendMail';
 import { sendToken } from '../utils/jwt';
 import { redis } from '../utils/redis';
 import {accessTokenOptions, refreshTokenOptions} from '../utils/jwt'
+import { getUserById } from '../services/user.service';
 
 // Register User
 interface IRegistrationBody{
@@ -204,3 +205,37 @@ export const updateAcessToken = CatchAsyncError(async(req: Request, res: Respons
         next(new ErrorHandler(error.message, 400));
     }
 });
+
+// get user info
+export const getUserInfo = CatchAsyncError(async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const userId = req.user?._id;
+        getUserById(userId, res);
+    } catch(error: any) {
+        return next(new ErrorHandler(error.message, 400));
+    }
+});
+
+// social auth
+interface ISocialAuthBody {
+    email: string;
+    name: string;
+    avatar: string;
+}
+
+export const socialAuth = CatchAsyncError(async(req: Request, res: Response, next: NextFunction) => {
+    try{
+        const {email, name, avatar} = req.body as ISocialAuthBody;
+        const user = await userModel.findOne({email});
+
+        if(!user){
+            const newUser = await userModel.create({email, name, avatar});
+            sendToken(newUser, 200, res);
+        } else {
+            sendToken(user, 200, res);
+        }
+
+    } catch(error: any){
+        return next(new ErrorHandler(error.message, 400));
+    }
+})
