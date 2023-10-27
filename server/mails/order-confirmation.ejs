@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Purchase Successful!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            background-color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #444;
+            color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+        .message-sm {
+            text-align: center;
+        }
+        h1 {
+            color: #ffbf00;
+        }
+        h3 {
+            color: #4ffe27;
+            text-align: center;
+        }
+        .course-info {
+            margin-top: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+        }
+        table, td {
+            border: 1px solid #444;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        .table-row {
+            margin-top: -20px;
+        }
+        .col-2 {
+            text-align: right;
+        }
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+        }
+        a {
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="message-sm">
+            <h1>Your Code Therapist Order is Confirmed!</h1>
+            <p>We're just as excited as you are!</p>
+        </div>
+
+        <div class="course-info">
+            <h3>Here's what you ordered:</h3>
+            <table>
+                <tr>
+                    <td>Order #: <%= order._id %></td>
+                    <td>Order Date: <%= order.date %></td>
+                </tr>
+            </table>
+
+            <table>
+                <tr>
+                    <th>Item</th>
+                    <th>Qty</th>
+                    <th>Cost</th>
+                </tr>
+                <tr>
+                    <td><%= order.name %></td>
+                    <td>1</td>
+                    <td>$<%= order.price %></td>
+                </tr>
+            </table>
+
+            <table class="table-row">
+                <tr>
+                    <td class="col-2">Subtotal:</td>
+                    <td class="col-2">$<%= order.price %></td>
+                </tr>
+            </table>
+
+            <table>
+                <tr>
+                    <td class="col-2">Total:</td>
+                    <td class="col-2">$<%= order.price %></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="footer">
+            <p>If you have any questions, please contact our support team at <a href="mailto:codetherapist18@gmail.com">codetherapist18@gmail.com</a></p>
+            <p>&copy; 2023 Code Therapist. All rights reserved</p>
+        </div>
+    </div>
+</body>
+</html>
