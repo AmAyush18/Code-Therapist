@@ -11,11 +11,11 @@ type Props = {
 };
 
 const schema = Yup.object().shape({
-    email: Yup.string().email("Invalid email").required("Please enter your email!"),
+    email: Yup.string().email("Invalid email").required("Please enter your email"),
     password: Yup.string().required("Please enter your password").min(8),
 })
 
-const Login: FC<Props> = (props: Props) => {
+const Login: FC<Props> = ({setRoute}) => {
     const [show, setShow] = useState(false);
 
     const formik = useFormik({
@@ -30,7 +30,7 @@ const Login: FC<Props> = (props: Props) => {
   return (
     <div className='w-full'>
         <h1 className={`${styles.title}`} >
-            Login with Code Therapist
+            <span className='text-yellow-200'>Login with</span> <span className='text-rose-500'>Code Therapist</span>
         </h1>
         <form onSubmit={handleSubmit}>
             <label
@@ -54,28 +54,55 @@ const Login: FC<Props> = (props: Props) => {
                 <span className='text-red-500 pt-2 block'>{errors.email}</span>
             )}
             <div className="w-full mt-5 relative mb-1">
-            <label
-                className={`${styles.label}`} 
-                htmlFor="password"
-            >  
-                Enter your Password
-            </label>
-            <input 
-                type={!show ? "password" : "text" }
-                name="password"
-                value={values.password}
-                onChange={handleChange}
-                id='password'
-                placeholder='p@ssword!%'
-                className={`${
-                    errors.password && touched.password && "border-red-500"
-                } ${styles.input}`}
-            />
-        
+                    <label className={`${styles.label}`} htmlFor="email">
+                        Enter your Password
+                    </label>
+                    <input type={!show ? "password" : "text"}
+                        name="password"
+                        value={values.password}
+                        onChange={handleChange}
+                        id="password"
+                        placeholder="password!@%"
+                        className={`${errors.password && touched.password && "border-red-500"} ${styles.input}`} 
+                    />
+                    {!show? (
+                        <AiOutlineEyeInvisible
+                            className="absolute bottom-3 right-2 z-1 cursor-pointer dark:text-[#ffffff]"
+                            size={20}
+                            onClick={() => setShow(true)}
+                        />
+                    ) : (
+                        <AiOutlineEye
+                            className="absolute bottom-3 right-2 z-1 cursor-pointer dark:text-[#ffffff]"
+                            size={20}
+                            onClick={() => setShow(false)}
+                        />
+                    )}
+                    {errors.password && touched.password && (
+                        <span className="text-red-500 pt-2 block">{errors.password}</span>
+                    )}
             </div>
+            <div className="w-full mt-5">
+                <input type="submit"
+                    value="Login"
+                    className={`${styles.button}`} 
+                />
+            </div>
+            <br />
+            <h5 className="text-center pt-3 font-Poppins text-[14px] text-black dark:text-white">
+                Or join with
+            </h5>
+            <div className="flex items-center justify-center my-3">
+                <FcGoogle size={30} className="cursor-pointer mr-2" />
+                <AiFillGithub size={30} className="cursor-pointer ml-2 dark:text-[#ffffff]" />
+            </div>
+            <h5 className="text-center pt-4 font-Poppins text-[14px] dark:text-[#ffffff]">
+                Not have any account?{""}
+                <span className="text-teal-500 pl-1 cursor-pointer" onClick={() => setRoute("Sign-Up")}>Sign Up</span>
+            </h5>
         </form>
     </div>
   )
 }
 
-export default Login
+export default Login;
