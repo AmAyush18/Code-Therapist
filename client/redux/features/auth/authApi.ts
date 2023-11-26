@@ -60,7 +60,7 @@ export const authApi = apiSlice.injectEndpoints({
                 } catch(error:any){
                     console.log(error);
                 }
-            }
+            },
         }),
         socialAuth: builder.mutation({
             query:({email,name,avatar}) => ({
