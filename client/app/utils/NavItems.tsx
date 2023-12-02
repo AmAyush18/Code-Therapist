@@ -36,7 +36,7 @@ const NavItems: FC<Props> = ({activeItem, isMobile}) => {
             <div className='hidden 800px:flex'>
                 {
                     NavItemsData && NavItemsData.map((item, index) => (
-                        <Link href={`$item.url`} key={index} passHref>
+                        <Link href={`${item.url}`} key={index} passHref>
                             <span
                                 className={`${
                                     activeItem === index

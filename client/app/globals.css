@@ -32,10 +32,17 @@ body {
   color: rgb(var(--foreground-rgb));
 }
 
-.hero_animation {
-  background-image: linear-gradient(147.92deg, hsla(115, 76%, 53%, 0.456) 10.41%, hsla(0, 0%, 100%, 0) 89.25%);
+.hero_animation_dark {
+  background-image: linear-gradient(147.92deg, hsla(115, 76%, 53%, 0.505) 10.41%, hsla(0, 0%, 100%, 0) 89.25%);
   animation: changeBackgroundColor 8s infinite alternate;
 }
+
+.hero_animation {
+  background-image: linear-gradient(147.92deg, hsla(60, 52%, 80%, 0.537) 10.41%, hsla(0, 30%, 67%, 0) 89.25%);
+  animation: changeBackgroundColor 8s infinite alternate;
+}
+
+
 
 @keyframes changeBackgroundColor{
   0%, 100%{

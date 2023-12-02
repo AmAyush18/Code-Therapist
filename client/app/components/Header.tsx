@@ -12,8 +12,8 @@ import { useSelector } from 'react-redux';
 import Image from 'next/image';
 import avatar from "../../public/assets/user.png";
 import { useSession } from 'next-auth/react';
-import { useSocialAuthMutation } from '../../redux/features/auth/authApi';
-import toast from 'react-hot-toast/headless';
+import { useLogOutQuery, useSocialAuthMutation } from '../../redux/features/auth/authApi';
+import toast from 'react-hot-toast';
 
 type Props = {
     open: boolean;
@@ -32,6 +32,12 @@ const Header: FC<Props> = ({activeItem, open, setOpen, route, setRoute}) => {
 
   const [socialAuth, {isSuccess, error}] = useSocialAuthMutation();
 
+  const [logout, setLogout] = useState(false);
+    
+  const {} = useLogOutQuery(undefined, {
+      skip: !logout ? true : false,
+  });
+
   useEffect(() => {
     if(!user){
       if(data){
@@ -42,8 +48,11 @@ const Header: FC<Props> = ({activeItem, open, setOpen, route, setRoute}) => {
         })
       }
     }
-    if(isSuccess){
+    if(data === null && isSuccess){
       toast.success("Login Successful!");
+    }
+    if(data === null){
+      setLogout(true);
     }
   }, [data, user]);
 
@@ -94,9 +103,11 @@ const Header: FC<Props> = ({activeItem, open, setOpen, route, setRoute}) => {
                   user ? (
                     <Link href={"/profile"}>
                       <Image 
-                        src={user.avatar ? user.avatar : avatar}
+                        src={user.avatar ? user.avatar.url : avatar}
                         alt=""
-                        className='w-[30px] h-[30px] rounded-full cursor-pointer'
+                        width={30}
+                        height={30}
+                        className={`rounded-full cursor-pointer ${activeItem === 5 ? "border-[2px] dark:border-teal-400 border-red-400" : ""}`}
                       />
                     </Link>
                   ) : (

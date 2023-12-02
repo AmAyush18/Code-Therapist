@@ -24,13 +24,13 @@ const Login: FC<Props> = ({setRoute, setOpen}) => {
     const [login, {isSuccess, error}] = useLoginMutation();
 
     const formik = useFormik({
-        initialValues: {email: "", password:""},
+        initialValues: {email:"",password:""},
         validationSchema: schema,
         onSubmit: async({email, password}) => {
-            await login({email, password})
-        }
+            await login({email, password});
+        },
     });
-
+    
     useEffect(() => {
         if (isSuccess){
             toast.success("Login Successful!");
@@ -43,13 +43,11 @@ const Login: FC<Props> = ({setRoute, setOpen}) => {
               }
         }
     },[isSuccess, error]);
-    
-
-    const { errors, touched, values, handleChange, handleSubmit} = formik;
+    const {errors, touched, values, handleChange, handleSubmit} = formik;
   return (
     <div className='w-full'>
         <h1 className={`${styles.title}`} >
-            <span className='text-yellow-200'>Login with</span> <span className='text-rose-500'>Code Therapist</span>
+            <span className='text-yellow-400'>Login with</span> <span className='text-rose-500'>Code Therapist</span>
         </h1>
         <form onSubmit={handleSubmit}>
             <label
@@ -124,7 +122,7 @@ const Login: FC<Props> = ({setRoute, setOpen}) => {
             </div>
             <h5 className="text-center pt-4 font-Poppins text-[14px] dark:text-[#ffffff]">
                 Not have any account?{""}
-                <span className="text-teal-500 pl-1 cursor-pointer" onClick={() => setRoute("Sign-Up")}>Sign Up</span>
+                <span className="text-red-500 dark:text-teal-500 pl-1 cursor-pointer" onClick={() => setRoute("Sign-Up")}>Sign Up</span>
             </h5>
         </form>
     </div>

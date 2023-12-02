@@ -52,7 +52,7 @@ const SignUp: FC<Props> = ({setRoute}) => {
   return (
     <div className='w-full'>
         <h1 className={`${styles.title}`} >
-            <span className='text-yellow-200'>Let's Join</span> <span className='text-rose-500'>Code Therapist</span>
+            <span className='text-yellow-500'>Let's Join</span> <span className='text-rose-500'>Code Therapist</span>
         </h1>
         <form onSubmit={handleSubmit}>
             <div className='mb-3'>
@@ -142,7 +142,7 @@ const SignUp: FC<Props> = ({setRoute}) => {
             </div>
             <h5 className="text-center pt-4 font-Poppins text-[14px] dark:text-[#ffffff]">
                 Already have an account?{""}
-                <span className="text-teal-500 pl-1 cursor-pointer" onClick={() => setRoute("Login")}>Sign In</span>
+                <span className="text-red-500 dark:text-teal-500 pl-1 cursor-pointer" onClick={() => setRoute("Login")}>Sign In</span>
             </h5>
         </form>
     </div>
