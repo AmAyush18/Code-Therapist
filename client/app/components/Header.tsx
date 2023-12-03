@@ -81,7 +81,14 @@ const Header: FC<Props> = ({activeItem, open, setOpen, route, setRoute}) => {
           <div className="w-[95%] 800px:w-[92%] m-auto py-2 h-full">
             <div className="w-full h-[80px] flex items-center justify-between p-3">
               <div>
-                <Link href={"/"} className={`text-[25px] font-Poppins font-[500] text-slate-900 dark:text-slate-100`}>
+                <Link href={"/"} className={`flex text-[20px] 1100px:text-[25px] font-Poppins font-[500] text-slate-900 dark:text-slate-100`}>
+                  <Image 
+                    src={require('../../public/assets/coding.png')}
+                    alt=""
+                    width={35}
+                    height={20}
+                    className={`cursor-pointer mr-1`}
+                  />
                   Code Therapist
                 </Link>
               </div>

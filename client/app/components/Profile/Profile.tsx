@@ -22,9 +22,11 @@ const Profile:FC<Props> = ({user}) => {
     const [active, setActive] = useState(1);
 
     const logOutHandler = async () => {
-        setLogout(true);
-        await signOut();
-    }
+        if (!logout) {
+            setLogout(true);
+            await signOut();
+        }
+    };
 
     if(typeof window !== "undefined"){
         window.addEventListener("scroll", () => {

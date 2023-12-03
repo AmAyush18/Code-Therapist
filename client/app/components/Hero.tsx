@@ -48,8 +48,8 @@ const Hero:FC<Props> = (props) => {
                         className="rounded-full ml-[-20px] w-[40px] h-[40px]" 
                     />
                     <p className="font-Josefin dark:text-[#edfff4] text-[#000000b3] 1000px:pl-3 text-[18px] font-[600]">
-                        500k+ People already trusted us.{" "}
-                        <Link href="/courses" className="dark:text-teal-500 text-[crimson]">View Courses</Link>{" "}
+                        10k+ People already joined us.{" "}
+                        <Link href="/courses" className="dark:text-teal-500 text-red-400">View Courses</Link>{" "}
                     </p>
                 </div>
                 <br />
