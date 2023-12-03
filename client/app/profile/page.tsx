@@ -18,7 +18,7 @@ const page:FC<Props> = (props: Props) => {
       <div>
         <Protected>
             <Heading 
-                title={`${user.name} Profile`}
+                title={`${user.name} Profile - Code Therapist`}
                 description="Code Therapist is a platform for the students to learn and get help from best in the industry."
                 keywords="Programming,MERN,Reading,Redux,Express,Fullstack"
             />
